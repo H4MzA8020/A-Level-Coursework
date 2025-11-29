@@ -1,0 +1,22 @@
+ Every unit has 6 base statistics, and specialised units have their own (usually self-explanatory) unique stats on top of these 6.
+ These are: strength, morale, organisation, speed, attack and defence. Morale refers to the emotional state of a unit at a particular
+ time. An elite unit with low morale may even perform worse then a millitia unit with high morale. It is impacted by factors such as
+ nearby units, being flanked, and taking casualties.
+
+ Organisation refers to the discipline of a unit. It is lowered by being in prolonged combat, crossing uneven terrain
+ and being flanked. Organisation slowly recovers while a unit is out of combat. For this reason, it is highly reccomended to
+ cycle out front line units to give them time to rest. If a units organisation reaches 0, the unit will enter a state of panic
+ and begin to flee. In this state, a unit is uncontrabble, until it eventually becomes calm.
+
+ Strength refers to the avaible manpower in a unit. It is depleted by combat, and losses are determined by organisation of a unit.
+ Strength is irrecoverable. Once a unit reaches 0 strength it will cease to exist, and be lost forever.
+
+ Attack is a decimal value which decides how much damage a unit deals. It is impacted heavily by unit type, morale and organisation.
+ Defence is a stat which decides how much incoming attack a unit will recieve, and it is also impacted by same factors mentioned above.
+ Speed is a stat which dictates how fast a unit can move, and it is heavily impacted by the terrain.
+
+ Light infantry also have an ammunition statistics, the light infantry will no longer be able to use ranged attack when the ammunition
+ reaches 0. Slingers are able to replenish gradually and automatically replenish ammunition by picking up rocks off the ground.
+ Ranged units also have a ranged attack statistic seperate to their attack stat. which determines the damage of their ranged weapons.
+
+ Finally, heavy infantry also has an encumbarance penalty, which slows down their speed, due to their heavy armour and weaponary.

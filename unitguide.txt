@@ -1,0 +1,16 @@
+ There are 2 main unit types, infantry and cavalry. Infantry consists of heavy infantry and light infantry. Heavy infantry has high
+ defence and melee damage, however, they suffer from a lack of mobility and ranged attack options. Furthermore, heavy infantry
+ are also more well trained then their light counterparts, meaning they have a stronger base morale and organisation. Their
+ presence alone boosts the morale of allied units nearby them. Heavy infantry include the Roman legionare and Carthiginian
+ hoplites. The legionares can form into the infamous testudo formation, significantly boosting their defence, but slowing them .
+ The hoplites can form a phalanx. which increases their range and defense, but also slows them down considerably. On the other hand,
+ light infantry sacrifices armouur and weaponary for mobility, allowing them to move rapidly along the battlefield, harrasing
+ the enemy infantry with their ranged weapons such as slingshots and javelins. This makes them adept for ambushing the enemy.
+ Light infantry include the famous Balearic slingers, which are excellent at ranged skirmishes.
+
+ Likewise, cavalry is also split into heavy and light sub-roles. Heavy cavalry has high damage, defence and morale damage,
+ however they are much slower then light cavalry and can be encircled and destroyed if used incorrectly. Heavy cavalry include the
+ Roman 'Ala', and the Carthiginian war elephants. They are best used as the hammer in hammer-and-anvil tactics. Light cavalry
+ functions simmilary to light infantry, their main function is to weaken and harass the enemy using hit-and-run tactics. Their mobility
+ and lack of armour makes them much more suited to this auxillary role in the battlefield. They also suffer less damage to their
+ organisation when crossing uneven or rugged terrain. Examples of light infantry are the Numidian mercenary cavalry.
