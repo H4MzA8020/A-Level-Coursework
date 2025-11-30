@@ -1,9 +1,8 @@
 import tkinter as tk
-#TODO: Use arial font for all text.
-
-global mainWindow
+volume = 0
+# Initializes main window.
 mainWindow = tk.Tk()
-# Hides mainwindow until main function is called.
+# Hides main window until main function is called.
 mainWindow.withdraw()
 
 def returnToMain(currentWindow, mainWindow):
@@ -11,7 +10,6 @@ def returnToMain(currentWindow, mainWindow):
     mainWindow.deiconify()
 
 def openGuideMenu(Parent):
-    #TODO: Parent.Destroy;  Parent.Open -->  guide.Destroy when press press back
     #Hides window, does not destroy it so window can be opened again.
     Parent.withdraw()
 
@@ -27,6 +25,7 @@ def openGuideMenu(Parent):
     unitStatsHeading = tk.Label(guideWindow, text = "Unit Statistics", font = ("Arial", 32, "underline"))
     unitStatsHeading.place(relx = 0.01, rely = 0.45)
 
+    #Guides are stored in a text file outside GUI program for cleaner code.
     with open("unitguide.txt", "r") as unitTextFile:
         unitText = unitTextFile.read()
     with open("unitstats.txt", "r") as unitStatsFile:
@@ -42,6 +41,35 @@ def openGuideMenu(Parent):
     returnButton.place(relx = 0.01, rely = 0.01)
 
 
+def setVolume(volumeSlider):
+    global volume
+    volume = volumeSlider.get()
+    print(volume)
+
+def openSettingsMenu(Parent):
+    global volume
+    Parent.withdraw()
+
+    settingsWindow = tk.Tk()
+
+    settingsTitle = tk.Label(settingsWindow, text = "Settings", font = ("Arial", 64, "bold"))
+    settingsTitle.place(relx = 0.5, rely = 0.025)
+
+    returnButton = tk.Button(settingsWindow, text = "Return to menu", command = lambda: returnToMain(settingsWindow, mainWindow))
+    returnButton.place(relx = 0.01, rely = 0.01)
+
+    volumeHeading = tk.Label(settingsWindow, text = "Volume", font = ("Arial", 32, "underline"))
+    volumeHeading.place(relx = 0.01, rely = 0.2)
+
+    volumeBar = tk.Scale(settingsWindow, from_=0, to=100, length = 600, tickinterval = 5, orient = tk.HORIZONTAL)
+    volumeBar.place(relx = 0.3, rely = 0.3)
+
+    setVolumeButton = tk.Button(settingsWindow, text = "Set Volume", width = 20, command = lambda: setVolume(volumeBar))
+    setVolumeButton.place(relx = 0.2, rely = 0.4)
+
+    changeLanguageHeading = tk.Label(settingsWindow, text = "Change Language", font = ("Arial", 32, "underline"))
+    changeLanguageHeading.place(relx = 0.01, rely = 0.5)
+
 def openMainMenu():
     mainWindow.deiconify()
     mainWindow.title("Historically Accurate Battle Simulator!")
@@ -56,7 +84,7 @@ def openMainMenu():
     guideButton = tk.Button(mainWindow, text = "Guide", width = 20, command = lambda: openGuideMenu(mainWindow) )
     guideButton.place(relx = 0.5, rely = 0.7)
 
-    settingsButton = tk.Button(mainWindow, text = "Settings", width = 20)
+    settingsButton = tk.Button(mainWindow, text = "Settings", width = 20, command = lambda: openSettingsMenu(mainWindow))
     settingsButton.place(relx = 0.5, rely = 0.8)
 
     mainWindow.mainloop()
