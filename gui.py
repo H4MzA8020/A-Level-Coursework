@@ -44,6 +44,7 @@ def openGuideMenu(Parent):
 def setVolume(volumeSlider):
     global volume
     volume = volumeSlider.get()
+    # Printing for testing purposes. Delete later.
     print(volume)
 
 def openSettingsMenu(Parent):
@@ -70,15 +71,29 @@ def openSettingsMenu(Parent):
     changeLanguageHeading = tk.Label(settingsWindow, text = "Change Language", font = ("Arial", 32, "underline"))
     changeLanguageHeading.place(relx = 0.01, rely = 0.5)
 
+def openBattleMenu(Parent):
+    Parent.withdraw()
+
+    mapSelectionWindow = tk.Tk()
+
+    mapSelectionHeading = tk.Label(mapSelectionWindow, text = "Choose a battlefield...", font = ("Arial", 64, "bold"))
+    mapSelectionHeading.place(relx = 0.5, rely = 0.025)
+
+    returnButton = tk.Button(mapSelectionWindow, text = "Return to menu", command = lambda: returnToMain(mapSelectionWindow, mainWindow))
+    returnButton.place(relx = 0.01, rely = 0.01)
+
+
+
+
 def openMainMenu():
     mainWindow.deiconify()
     mainWindow.title("Historically Accurate Battle Simulator!")
 
     title = tk.Label(mainWindow, text = "H.A.B.S", font = ("Arial", 64, "bold"))
-     #Max paramter is 1.0 (Far right of parent on x-axis, botom edge of parent on y-axis)
+    #Max paramter is 1.0 (Far right of parent on x-axis, botom edge of parent on y-axis)
     title.place(relx = 0.5, rely = 0.05)
 
-    battleButton = tk.Button(mainWindow, text = "Battle", width = 20)
+    battleButton = tk.Button(mainWindow, text = "Battle", width = 20, command = lambda: openBattleMenu(mainWindow))
     battleButton.place(relx = 0.5, rely = 0.6)
 
     guideButton = tk.Button(mainWindow, text = "Guide", width = 20, command = lambda: openGuideMenu(mainWindow) )
