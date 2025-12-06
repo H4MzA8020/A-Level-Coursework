@@ -17,7 +17,7 @@ def openGuideMenu(Parent):
     guideWindow.title("H.A.B.S Guide")
 
     guideTitle = tk.Label(guideWindow, text = "H.A.B.S Guide", font = ("Arial", 64, "bold"))
-    guideTitle.place(relx = 0.5, rely = 0.025)
+    guideTitle.place(relx = 0.4, rely = 0.025)
 
     unitGuideHeading = tk.Label(guideWindow, text = "Unit Types", font = ("Arial", 32, "underline"))
     unitGuideHeading.place(relx = 0.01, rely = 0.095)
@@ -54,7 +54,7 @@ def openSettingsMenu(Parent):
     settingsWindow = tk.Tk()
 
     settingsTitle = tk.Label(settingsWindow, text = "Settings", font = ("Arial", 64, "bold"))
-    settingsTitle.place(relx = 0.5, rely = 0.025)
+    settingsTitle.place(relx = 0.43, rely = 0.025)
 
     returnButton = tk.Button(settingsWindow, text = "Return to menu", command = lambda: returnToMain(settingsWindow, mainWindow))
     returnButton.place(relx = 0.01, rely = 0.01)
@@ -66,7 +66,7 @@ def openSettingsMenu(Parent):
     volumeBar.place(relx = 0.3, rely = 0.3)
 
     setVolumeButton = tk.Button(settingsWindow, text = "Set Volume", width = 20, command = lambda: setVolume(volumeBar))
-    setVolumeButton.place(relx = 0.2, rely = 0.4)
+    setVolumeButton.place(relx = 0.3, rely = 0.4)
 
     changeLanguageHeading = tk.Label(settingsWindow, text = "Change Language", font = ("Arial", 32, "underline"))
     changeLanguageHeading.place(relx = 0.01, rely = 0.5)
@@ -77,12 +77,10 @@ def openBattleMenu(Parent):
     mapSelectionWindow = tk.Tk()
 
     mapSelectionHeading = tk.Label(mapSelectionWindow, text = "Choose a battlefield...", font = ("Arial", 64, "bold"))
-    mapSelectionHeading.place(relx = 0.5, rely = 0.025)
+    mapSelectionHeading.place(relx = 0.3, rely = 0.025)
 
     returnButton = tk.Button(mapSelectionWindow, text = "Return to menu", command = lambda: returnToMain(mapSelectionWindow, mainWindow))
     returnButton.place(relx = 0.01, rely = 0.01)
-
-
 
 
 def openMainMenu():
@@ -91,16 +89,16 @@ def openMainMenu():
 
     title = tk.Label(mainWindow, text = "H.A.B.S", font = ("Arial", 64, "bold"))
     #Max paramter is 1.0 (Far right of parent on x-axis, botom edge of parent on y-axis)
-    title.place(relx = 0.5, rely = 0.05)
+    title.place(relx = 0.45, rely = 0.05)
 
-    battleButton = tk.Button(mainWindow, text = "Battle", width = 20, command = lambda: openBattleMenu(mainWindow))
-    battleButton.place(relx = 0.5, rely = 0.6)
+    battleButton = tk.Button(mainWindow, text = "Battle", width = 30, height = 3, command = lambda: openBattleMenu(mainWindow))
+    battleButton.place(relx = 0.45, rely = 0.6)
 
-    guideButton = tk.Button(mainWindow, text = "Guide", width = 20, command = lambda: openGuideMenu(mainWindow) )
-    guideButton.place(relx = 0.5, rely = 0.7)
+    guideButton = tk.Button(mainWindow, text = "Guide", width = 30, height = 3, command = lambda: openGuideMenu(mainWindow) )
+    guideButton.place(relx = 0.45, rely = 0.7)
 
-    settingsButton = tk.Button(mainWindow, text = "Settings", width = 20, command = lambda: openSettingsMenu(mainWindow))
-    settingsButton.place(relx = 0.5, rely = 0.8)
+    settingsButton = tk.Button(mainWindow, text = "Settings", width = 30, height = 3,  command = lambda: openSettingsMenu(mainWindow))
+    settingsButton.place(relx = 0.45, rely = 0.8)
 
     mainWindow.mainloop()
 
