@@ -70,6 +70,15 @@ def openSettingsMenu(Parent):
 
     changeLanguageHeading = tk.Label(settingsWindow, text = "Change Language", font = ("Arial", 32, "underline"))
     changeLanguageHeading.place(relx = 0.01, rely = 0.5)
+    #TODO: Add Functionality which changes language.
+    changeToEnglishButton = tk.Button(settingsWindow, text = "English", width = 40, height = 5)
+    changeToEnglishButton.place(relx = 0.35, rely = 0.6)
+
+    changeToFrenchButton = tk.Button(settingsWindow, text = "French", width = 40, height = 5)
+    changeToFrenchButton.place(relx = 0.35, rely = 0.75)
+
+    changeToSpanishButton = tk.Button(settingsWindow, text = "Spanish", width = 40, height = 5)
+    changeToSpanishButton.place(relx = 0.35, rely = 0.9)
 
 def openBattleMenu(Parent):
     Parent.withdraw()
