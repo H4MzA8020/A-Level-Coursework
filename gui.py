@@ -1,4 +1,6 @@
 import tkinter as tk
+from PIL import ImageTk, Image
+
 volume = 0
 # Initializes main window.
 mainWindow = tk.Tk()
@@ -13,7 +15,7 @@ def openGuideMenu(Parent):
     #Hides window, does not destroy it so window can be opened again.
     Parent.withdraw()
 
-    guideWindow = tk.Tk()
+    guideWindow = tk.Toplevel(Parent)
     guideWindow.title("H.A.B.S Guide")
 
     guideTitle = tk.Label(guideWindow, text = "H.A.B.S Guide", font = ("Arial", 64, "bold"))
@@ -51,7 +53,7 @@ def openSettingsMenu(Parent):
     global volume
     Parent.withdraw()
 
-    settingsWindow = tk.Tk()
+    settingsWindow = tk.Toplevel(Parent)
 
     settingsTitle = tk.Label(settingsWindow, text = "Settings", font = ("Arial", 64, "bold"))
     settingsTitle.place(relx = 0.43, rely = 0.025)
@@ -83,13 +85,25 @@ def openSettingsMenu(Parent):
 def openBattleMenu(Parent):
     Parent.withdraw()
 
-    mapSelectionWindow = tk.Tk()
+    mapSelectionWindow = tk.Toplevel(Parent)
 
     mapSelectionHeading = tk.Label(mapSelectionWindow, text = "Choose a battlefield...", font = ("Arial", 64, "bold"))
     mapSelectionHeading.place(relx = 0.3, rely = 0.025)
 
     returnButton = tk.Button(mapSelectionWindow, text = "Return to menu", command = lambda: returnToMain(mapSelectionWindow, mainWindow))
     returnButton.place(relx = 0.01, rely = 0.01)
+
+    #Creates the image.
+    plainsMapImg = Image.open("Graphics/plains_map_preview.png")
+    renderPlainsImg = ImageTk.PhotoImage(plainsMapImg)
+
+    plainsMapImgLabel = tk.Label(mapSelectionWindow, image=renderPlainsImg, height=200, width=450)
+    plainsMapImgLabel.image = renderPlainsImg #Prevents automatic memeory garbage collection.
+    plainsMapImgLabel.place(relx=0.1, rely=0.2)
+
+    selectPlainsButton = tk.Button(mapSelectionWindow, text = "Select")
+    selectPlainsButton.place(relx=0.3, rely=0.4)
+
 
 
 def openMainMenu():
