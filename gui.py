@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import *
 from PIL import ImageTk, Image
 
 volume = 0
@@ -100,11 +101,41 @@ def openBattleMenu(Parent):
     plainsMapImgLabel = tk.Label(mapSelectionWindow, image=renderPlainsImg, height=200, width=450)
     plainsMapImgLabel.image = renderPlainsImg #Prevents automatic memeory garbage collection.
     plainsMapImgLabel.place(relx=0.1, rely=0.2)
-
+    #idk where to store the map selected variable thing
     selectPlainsButton = tk.Button(mapSelectionWindow, text = "Select")
     selectPlainsButton.place(relx=0.3, rely=0.4)
 
+    openNextMenuButton = tk.Button(mapSelectionWindow, text = "Next", command = lambda: openCivSelection(mapSelectionWindow))
+    openNextMenuButton.place(relx = 0.95, rely = 0.01)#
 
+def openCivSelection(Parent):
+    Parent.withdraw()
+
+    civSelectionWindow = tk.Toplevel(Parent)
+
+    civSelectionHeading = tk.Label(civSelectionWindow, text = "Select a Civillisation...", font = ("Arial", 64, "bold"))
+    civSelectionHeading.place(relx=0.3, rely=0.05)
+
+
+    civilisationList = ["Rome", "Carthage", "Gaulic Tribes", "Numidia", "Iberian Tribes"]
+    #This are the strings which will appear on the dropdown menu by default.
+    defaultPlayerCiv = StringVar()
+    defaultPlayerCiv.set("Rome")
+
+    defaultComputerCiv = StringVar()
+    defaultComputerCiv.set("Carthage")
+
+    playerDropDownHeading = tk.Label(civSelectionWindow, text = "Select your civillisation:", font = ("Arial", 16))
+    playerDropDownHeading.place(relx=0.2, rely = 0.2)
+
+    playerDropDown = OptionMenu(civSelectionWindow, defaultPlayerCiv, *civilisationList)
+    playerDropDown.place(relx = 0.5, rely = 0.3)
+
+    computerDropDownHeading = tk.Label(civSelectionWindow, text = "Select opposing civillisation:", font = ("Arial", 16))
+    computerDropDownHeading.place(relx = 0.2, rely = 0.6)
+
+    computerDropDown = OptionMenu(civSelectionWindow, defaultComputerCiv, *civilisationList)
+    computerDropDown.place(relx = 0.5, rely = 0.7)
 
 def openMainMenu():
     mainWindow.deiconify()
