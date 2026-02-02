@@ -44,4 +44,4 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-
+#IMPORTANT: EACH UNIT MUST BE 72x38!!!

@@ -82,33 +82,36 @@ def openSettingsMenu(Parent):
 
     changeToSpanishButton = tk.Button(settingsWindow, text = "Spanish", width = 40, height = 5)
     changeToSpanishButton.place(relx = 0.35, rely = 0.9)
-
+#sourceOfRetrun: The window where one is returning from.
 def openBattleMenu(Parent):
-    Parent.withdraw()
+        Parent.withdraw()
 
-    mapSelectionWindow = tk.Toplevel(Parent)
+        mapSelectionWindow = tk.Toplevel(Parent)
 
-    mapSelectionHeading = tk.Label(mapSelectionWindow, text = "Choose a battlefield...", font = ("Arial", 64, "bold"))
-    mapSelectionHeading.place(relx = 0.3, rely = 0.025)
+        mapSelectionHeading = tk.Label(mapSelectionWindow, text = "Choose a battlefield...", font = ("Arial", 64, "bold"))
+        mapSelectionHeading.place(relx = 0.3, rely = 0.025)
 
-    returnButton = tk.Button(mapSelectionWindow, text = "Return to menu", command = lambda: returnToMain(mapSelectionWindow, mainWindow))
-    returnButton.place(relx = 0.01, rely = 0.01)
+        returnButton = tk.Button(mapSelectionWindow, text = "Return to menu")#command = lambda: returnToMain(mapSelectionWindow, mainWindow))
+        returnButton.place(relx = 0.01, rely = 0.01)
 
-    #Creates the image.
-    plainsMapImg = Image.open("Graphics/plains_map_preview.png")
-    renderPlainsImg = ImageTk.PhotoImage(plainsMapImg)
+        #Creates the image.
+        plainsMapImg = Image.open("Graphics/plains_map_preview.png")
+        renderPlainsImg = ImageTk.PhotoImage(plainsMapImg)
 
-    plainsMapImgLabel = tk.Label(mapSelectionWindow, image=renderPlainsImg, height=200, width=450)
-    plainsMapImgLabel.image = renderPlainsImg #Prevents automatic memeory garbage collection.
-    plainsMapImgLabel.place(relx=0.1, rely=0.2)
-    #idk where to store the map selected variable thing
-    selectPlainsButton = tk.Button(mapSelectionWindow, text = "Select")
-    selectPlainsButton.place(relx=0.3, rely=0.4)
+        plainsMapImgLabel = tk.Label(mapSelectionWindow, image=renderPlainsImg, height=200, width=450)
+        plainsMapImgLabel.image = renderPlainsImg #Prevents automatic memeory garbage collection.
+        plainsMapImgLabel.place(relx=0.1, rely=0.2)
 
-    openNextMenuButton = tk.Button(mapSelectionWindow, text = "Next", command = lambda: openCivSelection(mapSelectionWindow))
-    openNextMenuButton.place(relx = 0.95, rely = 0.01)#
+        selectPlainsButton = tk.Button(mapSelectionWindow, text = "Select")
+        selectPlainsButton.place(relx=0.3, rely=0.4)
+
+        openNextMenuButton = tk.Button(mapSelectionWindow, text = "Next", command = lambda: openCivSelection(mapSelectionWindow))
+        openNextMenuButton.place(relx = 0.95, rely = 0.01)#
 
 def openCivSelection(Parent):
+    #These will have the .get() function used in the next menu, to decide which units are availble for purchase.
+    global defaultPlayerCiv, defaultComputerCiv
+
     Parent.withdraw()
 
     civSelectionWindow = tk.Toplevel(Parent)
@@ -116,8 +119,7 @@ def openCivSelection(Parent):
     civSelectionHeading = tk.Label(civSelectionWindow, text = "Select a Civillisation...", font = ("Arial", 64, "bold"))
     civSelectionHeading.place(relx=0.3, rely=0.05)
 
-
-    civilisationList = ["Rome", "Carthage", "Gaulic Tribes", "Numidia", "Iberian Tribes"]
+    civilisationList = ["Rome", "Carthage", "Gaulic Tribes", "Iberian Tribes"]
     #This are the strings which will appear on the dropdown menu by default.
     defaultPlayerCiv = StringVar()
     defaultPlayerCiv.set("Rome")
@@ -127,15 +129,50 @@ def openCivSelection(Parent):
 
     playerDropDownHeading = tk.Label(civSelectionWindow, text = "Select your civillisation:", font = ("Arial", 16))
     playerDropDownHeading.place(relx=0.2, rely = 0.2)
-
+    # Note to self: OptionMenus do not have getter function avaialble, use the stringVars assigned to them.
     playerDropDown = OptionMenu(civSelectionWindow, defaultPlayerCiv, *civilisationList)
-    playerDropDown.place(relx = 0.5, rely = 0.3)
+    playerDropDown.place(relx = 0.5, rely = 0.3)#
 
     computerDropDownHeading = tk.Label(civSelectionWindow, text = "Select opposing civillisation:", font = ("Arial", 16))
     computerDropDownHeading.place(relx = 0.2, rely = 0.6)
 
     computerDropDown = OptionMenu(civSelectionWindow, defaultComputerCiv, *civilisationList)
     computerDropDown.place(relx = 0.5, rely = 0.7)
+
+    openNextMenuButton = tk.Button(civSelectionWindow, text = "Next", command = lambda: openPlayerArmyMenu(civSelectionWindow))
+    openNextMenuButton.place(relx = 0.95, rely = 0.01)
+
+def openPlayerArmyMenu(Parent):
+
+    Parent.withdraw()
+
+    armyCreationWindow = tk.Toplevel(Parent)
+
+    title = tk.Label(armyCreationWindow, text = "Create your army...", font = ("Arial", 32, "underline"))
+    title.place(relx = 0.45, rely = 0.05)
+
+    budget = 3000
+
+    budgetLabel = tk.Label(armyCreationWindow, text = f"Points: {budget}", font = ("Arial", 16))
+    budgetLabel.place(relx = 0.05, rely = 0.05)
+
+    infantryLabel = tk.Label(armyCreationWindow, text = "Infantry", font = ("Arial", 16, "bold"))
+    infantryLabel.place(relx = 0.05, rely = 0.15)
+
+    playerCiv = defaultPlayerCiv.get()
+
+    if playerCiv == "Rome":
+
+        legionareImg = Image.open("Graphics/Units/legionares.png").resize((72, 38))
+        renderLegionareImg = ImageTk.PhotoImage(legionareImg)
+
+        leigonareImgLabel = tk.Label(armyCreationWindow, image=renderLegionareImg, height=100, width=225)
+        leigonareImgLabel.image = renderLegionareImg #Prevents automatic memeory garbage collection.
+
+        leigonareImgLabel.place(relx=0.1, rely=0.2)
+
+
+
 
 def openMainMenu():
     mainWindow.deiconify()
