@@ -2,11 +2,13 @@ import tkinter as tk
 from tkinter import *
 from PIL import ImageTk, Image
 
-volume = 0
+budget = 3000
+
 # Initializes main window.
 mainWindow = tk.Tk()
 # Hides main window until main function is called.
 mainWindow.withdraw()
+
 
 def returnToMain(currentWindow, mainWindow):
     currentWindow.withdraw()
@@ -142,16 +144,43 @@ def openCivSelection(Parent):
     openNextMenuButton = tk.Button(civSelectionWindow, text = "Next", command = lambda: openPlayerArmyMenu(civSelectionWindow))
     openNextMenuButton.place(relx = 0.95, rely = 0.01)
 
-def openPlayerArmyMenu(Parent):
 
+def buyUnit(unit, budgetLabel, numberUnitsLabel):
+    global budget
+
+    numUnits = int(numberUnitsLabel.cget("text"))
+    numUnits += 1
+
+    if unit == "Legion":
+        budget = budget - 100
+
+    budgetLabel.config(text = f"Points: {budget}")
+    numberUnitsLabel.config(text =str(numUnits))
+
+def unBuyUnit(unit, budgetLabel, numberUnitsLabel):
+    global budget
+
+    numUnits = int(numberUnitsLabel.cget("text"))
+    # Preventing infinite money glitch.
+    if numUnits != 0:
+        if unit == "Legion":
+            budget += 100
+
+        budgetLabel.config(text = f"Points: {budget}")
+
+        numUnits -= 1
+        numberUnitsLabel.config(text = str(numUnits))
+
+
+
+def openPlayerArmyMenu(Parent):
+    global budget
     Parent.withdraw()
 
     armyCreationWindow = tk.Toplevel(Parent)
 
     title = tk.Label(armyCreationWindow, text = "Create your army...", font = ("Arial", 32, "underline"))
     title.place(relx = 0.45, rely = 0.05)
-
-    budget = 3000
 
     budgetLabel = tk.Label(armyCreationWindow, text = f"Points: {budget}", font = ("Arial", 16))
     budgetLabel.place(relx = 0.05, rely = 0.05)
@@ -163,13 +192,27 @@ def openPlayerArmyMenu(Parent):
 
     if playerCiv == "Rome":
 
-        legionareImg = Image.open("Graphics/Units/legionares.png").resize((72, 38))
+        legionareImg = Image.open("Graphics/Units/legionare.png").resize((210, 105))
         renderLegionareImg = ImageTk.PhotoImage(legionareImg)
 
-        leigonareImgLabel = tk.Label(armyCreationWindow, image=renderLegionareImg, height=100, width=225)
-        leigonareImgLabel.image = renderLegionareImg #Prevents automatic memeory garbage collection.
+        legionImgLabel = tk.Label(armyCreationWindow, image=renderLegionareImg, height=200, width=225)
+        legionImgLabel.image = renderLegionareImg #Prevents automatic memeory garbage collection.
+        legionImgLabel.place(relx=0.25, rely=0.24)
 
-        leigonareImgLabel.place(relx=0.1, rely=0.2)
+        legionLabel = tk.Label(armyCreationWindow, text = "Roman Legion - 100", font = ("Arial", 16))
+        legionLabel.place(relx = 0.26, rely = 0.25)
+        # Displays the number of legion units the user has purchased.
+        purchasedLegions = tk.Label(armyCreationWindow, text = 0 ,width = 5, relief = "sunken")
+        purchasedLegions.place(relx=0.3, rely = 0.40)
+
+        buyLegion = tk.Button(armyCreationWindow, text = "+", height = 1, command = lambda: buyUnit("Legion", budgetLabel, purchasedLegions))
+        buyLegion.place(relx = 0.27, rely = 0.39)
+
+        unBuyLegion = tk.Button(armyCreationWindow, text = "-", height = 1, command = lambda: unBuyUnit("Legion", budgetLabel, purchasedLegions))
+        unBuyLegion.place(relx = 0.33, rely = 0.39)
+
+
+
 
 
 
